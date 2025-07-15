@@ -12,4 +12,5 @@ ncurses-6.5/
 glibc-build/
 ncurses-build/
 coreutils-build/
+alsh/initramfs.cpio.gz
 
