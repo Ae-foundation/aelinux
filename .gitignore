@@ -1,0 +1,15 @@
+disk.img
+vim/
+bash/
+linux/
+glibc/
+busybox/
+coreutils/
+bash-build/
+util-linux/
+util-build/
+ncurses-6.5/
+glibc-build/
+ncurses-build/
+coreutils-build/
+

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+su -c "find . | cpio -o -H newc | gzip > initramfs.cpio.gz"
+# su -c "find . -print0 | cpio --null -ov --format=newc > initramfs.cpio"
+sudo rm initramfs.cpio.gz
+sudo gzip initramfs.cpio
+

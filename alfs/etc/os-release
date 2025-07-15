@@ -1,0 +1,6 @@
+NAME="AeLinux"
+PRETTY_NAME="Ae Linux"
+ID=aelinux
+BUILD_ID=true
+ANSI_COLOR=37
+

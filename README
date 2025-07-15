@@ -1,0 +1,47 @@
+-===================== AeLinux =====================-
+True master linux distribution.
+
+To run in QEMU, follow these steps:
+; Build disk.img
+$ truncate -s 1G disk.img
+$ fdisk disk.img
+fdisk$ o
+fdisk$ n
+fdisk$ p
+fdisk$ 1
+fdisk$ <Enter>
+fdisk$ <Enter>
+fdisk$ a
+fdisk$ w
+$ lsblk ; Check lsblk, use next /dev/loopN (N -- number) after the last occupied
+# losetup /dev/loop0 disk.img
+# losetup /dev/loop1 disk.img -o 1M
+# mkfs.ext4 /dev/loop1
+# mount /dev/loop1 /mnt/
+# cd alfs/
+# rm initramfs.cpio.gz
+# su -c "find . | cpio -o -H newc | gzip > initramfs.cpio.gz"
+# cd ../
+# cp -vra alfs/* /mnt/
+# grub-install --target=i386-pc --root-directory=/mnt/ --no-floppy --modules="normal part_msdos ext2 multiboot" /dev/loop0
+# cp /mnt/ae/grub.cfg /mnt/boot/grub/grub.cfg
+
+; And finally,
+$ qemu-system-x86_64 disk.img
+
+To mount the disk and add files:
+# losetup /dev/aelinux disk.img -o 1M
+# mount /dev/aelinux /mnt/
+... Copy your files to /mnt/ ...
+# cd alfs/
+# rm initramfs.cpio.gz
+# su -c "find . | cpio -o -H newc | gzip > initramfs.cpio.gz"
+# cd ../
+# sudo umount /mnt/
+
+Files
+  README          Readme, read it
+  linux/          Linux source code, aelinux uses 6.16.0 (compiled by xi)
+  busybox/        Busybox source code, aelinux uses 1.38.0.git (compiled by xi)
+  initramfs/      DON'T TOUCH THAT!!!!!
+

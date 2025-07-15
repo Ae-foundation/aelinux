@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+
+trap "echo 'Shutting down...'; /bin/poweroff -f" SIGTERM SIGINT
+exec /usr/bin/bash
+
